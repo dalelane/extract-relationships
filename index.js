@@ -34,8 +34,8 @@ var clone = require('clone');
  *   responses in this means we don't need to worry about checking, 
  *   and can treat all responses in the same way.
  */
-function getAsArray(obj){
-    if (util.isArray(obj)){
+function getAsArray(obj) {
+    if (util.isArray(obj)) {
         return obj;
     }
     else {
@@ -77,7 +77,7 @@ function getAsArray(obj){
 function collectEntityMentions(entities, mentions) {
 
     var entityIds = Object.keys(entities);
-    return entityIds.map(function(entityid){
+    return entityIds.map(function (entityid) {
         // for each entity in the provided object...
         var entity = entities[entityid];
 
@@ -90,7 +90,7 @@ function collectEntityMentions(entities, mentions) {
         // the entity will contain a list of references of it's 
         //  mentions in 'mentref'
         // we replace this with the actual mentions 
-        getAsArray(entity.mentref).forEach(function(mention){
+        getAsArray(entity.mentref).forEach(function (mention) {
             var mentioninfo = clone(mentions[mention.mid]);
 
             // as entities and mentions are now together, it is 
@@ -159,7 +159,7 @@ function collectEntityMentions(entities, mentions) {
  */
 function collectRelationshipMentions(options, entities, mentions, relationships) {
 
-    return relationships.map(function(relationship){
+    return relationships.map(function (relationship) {
 
         // for each relationship in the provided list, prepare 
         //   a new representation of the relationship info that
@@ -171,7 +171,7 @@ function collectRelationshipMentions(options, entities, mentions, relationships)
         };
 
         // only the temporary relationships have subtypes
-        if (relationship.type === 'timeOf'){
+        if (relationship.type === 'timeOf') {
             response.subtype = relationship.subtype;
         }
 
@@ -188,7 +188,7 @@ function collectRelationshipMentions(options, entities, mentions, relationships)
         delete response.entities.two.score;
 
         // for each instance where this relationship is found in the text...
-        getAsArray(relationship.relmentions.relmention).forEach(function(relmention){
+        getAsArray(relationship.relmentions.relmention).forEach(function (relmention) {
             // get the descriptions of the mentions referred to by ID
             relmention.one = mentions[relmention.rel_mention_arg[0].mid];
             relmention.two = mentions[relmention.rel_mention_arg[1].mid];
@@ -198,7 +198,7 @@ function collectRelationshipMentions(options, entities, mentions, relationships)
             delete relmention.two.scores;
             delete relmention.rmid;
 
-            if (options.includeScores){
+            if (options.includeScores) {
                 // scores are returned by the API as strings despite being
                 //  doubles (between 0 and 1)
                 // convert here to make it easier for clients to consume 
@@ -229,7 +229,7 @@ function collectRelationshipMentions(options, entities, mentions, relationships)
  * @returns object with parameters for a HTTP request
  * @throws error if no credentials are available
  */
-function getRequestOptions(options){
+function getRequestOptions(options) {
 
     // these are the values that will be the same for all requests
     var requestoptions = {
@@ -263,7 +263,7 @@ function getRequestOptions(options){
         }
     }
 
-    if (options.api && options.api.url && options.api.user && options.api.pass){
+    if (options.api && options.api.url && options.api.user && options.api.pass) {
         requestoptions.url = options.api.url;
         requestoptions.auth = { user : options.api.user, pass : options.api.pass };
 
@@ -328,18 +328,18 @@ var DEFAULT_OPTIONS = {
  *                                     Required when not running in a Bluemix environment
  * @param {Function} callback - called once complete
  */
-module.exports.extract = function extract(text){
+module.exports.extract = function extract(text) {
 
     //
     // validate input
     //
 
-    if (arguments.length < 2 || arguments.length > 3){
+    if (arguments.length < 2 || arguments.length > 3) {
         throw new Error('Incorrect arguments. Usage: extract(<text to parse>, [options], callback)');
     }
 
-    if (text){
-        if (typeof text !== 'string'){
+    if (text) {
+        if (typeof text !== 'string') {
             throw new Error('First parameter is required and should be the text to parse');
         }
     }
@@ -350,16 +350,16 @@ module.exports.extract = function extract(text){
     var options;
     var callback;
 
-    if (arguments.length === 2 && typeof arguments[1] === 'function'){
+    if (arguments.length === 2 && typeof arguments[1] === 'function') {
         options = DEFAULT_OPTIONS;
         callback = arguments[1];
     }
-    else if (arguments.length === 3 && typeof arguments[1] === 'object' && typeof arguments[2] === 'function'){
+    else if (arguments.length === 3 && typeof arguments[1] === 'object' && typeof arguments[2] === 'function') {
         options = arguments[1];
         callback = arguments[2];
 
         // copy missing options from the default set
-        Object.keys(DEFAULT_OPTIONS).forEach(function(defaultOption) { 
+        Object.keys(DEFAULT_OPTIONS).forEach(function (defaultOption) { 
             if (defaultOption in options === false) { 
                 options[defaultOption] = DEFAULT_OPTIONS[defaultOption];
             }
@@ -379,13 +379,13 @@ module.exports.extract = function extract(text){
     try {
         requestoptions = getRequestOptions(options);
     }
-    catch (err){
+    catch (err) {
         return callback(err);        
     }
 
     requestoptions.form.txt = text;
 
-    if (options.dataset){
+    if (options.dataset) {
         requestoptions.form.sid = options.dataset;
     }
 
@@ -405,16 +405,16 @@ module.exports.extract = function extract(text){
     //  parse and dependency parse trees
     var parser = new xml2object([ 'mentions', 'entities', 'relations' ]); 
 
-    parser.on('object', function(name, obj) {
+    parser.on('object', function (name, obj) {
 
         // Parsing the XML returned by the API using a streaming parser 
         //  This is called for each of the XML entities specified in the
         //  constructor above (mentions, entities, relations) letting us
         //  parse the streamed XML in sections.
 
-        if (name === 'entities'){
+        if (name === 'entities') {
 
-            obj.entity.forEach(function(entity){
+            obj.entity.forEach(function (entity) {
                 // objects are returned as arrays - we restructure
                 //  them into objects indexed by id to let us 
                 //  reference items in the array by id
@@ -428,11 +428,11 @@ module.exports.extract = function extract(text){
                 delete entity.generic;
 
                 // remove placeholder subtype values
-                if (entity.subtype === 'OTHER'){
+                if (entity.subtype === 'OTHER') {
                     delete entity.subtype;
                 }
 
-                if (options.includeScores){
+                if (options.includeScores) {
                     // scores are returned by the API as strings despite being
                     //  doubles (between 0 and 1)
                     // convert here to make it easier for clients to consume 
@@ -444,9 +444,9 @@ module.exports.extract = function extract(text){
             });
 
         }
-        else if (name === 'mentions'){
+        else if (name === 'mentions') {
 
-            obj.mention.forEach(function(mention){
+            obj.mention.forEach(function (mention) {
                 // objects are returned as arrays - we restructure
                 //  them into objects indexed by id to let us 
                 //  reference items in the array by id
@@ -468,7 +468,7 @@ module.exports.extract = function extract(text){
                 // group the remaining attributes to make them clearer
                 //
 
-                if (options.includeScores){
+                if (options.includeScores) {
                     mention.scores = {
                         // scores are returned as strings, so while
                         //  restructuring we also parse them into 
@@ -480,7 +480,7 @@ module.exports.extract = function extract(text){
                 delete mention.score;
                 delete mention.corefScore;
 
-                if (options.includeLocations){
+                if (options.includeLocations) {
                     mention.location = {
                         begin : parseInt(mention.begin, 10),
                         end : parseInt(mention.end, 10),
@@ -495,7 +495,7 @@ module.exports.extract = function extract(text){
             });
 
         }
-        else if (name === 'relations'){
+        else if (name === 'relations') {
 
             relationships = obj.relation;
 
@@ -503,7 +503,7 @@ module.exports.extract = function extract(text){
     });
 
     
-    parser.on('end', function() {
+    parser.on('end', function () {
 
         // finished parsing the XML - the objects that we pulled out
         //  are now in the entities, mentions and relationships objects
@@ -512,10 +512,10 @@ module.exports.extract = function extract(text){
         // restructure them before returning
 
         var response = {};
-        if (options.includeMentions){
+        if (options.includeMentions) {
             response.entities = collectEntityMentions(clone(entities), mentions);
         }
-        if (options.includeRelationships){
+        if (options.includeRelationships) {
             response.relationships = collectRelationshipMentions(options, entities, mentions, relationships);
         }
 
@@ -530,12 +530,12 @@ module.exports.extract = function extract(text){
     //
 
     request(requestoptions)
-        .on('error', function(err){
+        .on('error', function (err) {
             // failure to submit request
             return callback(err);
         })
-        .on('response', function(rsp){
-            if (rsp.statusCode === httpstatus.OK){
+        .on('response', function (rsp) {
+            if (rsp.statusCode === httpstatus.OK) {
                 // only start the parser if the API request was successful
                 rsp.pipe(parser.saxStream);
             }
