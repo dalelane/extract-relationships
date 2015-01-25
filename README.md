@@ -36,6 +36,11 @@ This means:
 
 ## Usage
 
+### Install
+```
+npm install extract-relationships
+```
+
 ### Basic 
 Using default options 
 [examples/bluemix.js](https://github.com/dalelane/extract-relationships/tree/master/examples/bluemix.js)
