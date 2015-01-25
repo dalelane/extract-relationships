@@ -10,7 +10,17 @@ You provide text, and it'll extract:
  - the different mentions of each entity
  - the relationships between the entities contained in the text
 
-If that's too abstract, the examples below will hopefully make more sense. 
+## Contents
+	- [How this works](#)
+	- [Usage](#)
+		- [Basic](#)
+		- [Demo](#)
+	- [Options](#)
+	- [Interpreting the output](#)
+	- [Authentication](#)
+		- [Bluemix](#)
+		- [Running outside Bluemix](#)
+	- [Usage and trademarks](#)
 
 ## How this works
 
