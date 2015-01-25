@@ -14,7 +14,7 @@ If that's too abstract, the examples below will hopefully make more sense.
 
 ## How this works
 
-This package is a thin library around the IBM Watson Relationship Extraction service on Bluemix. All the natural language processing stuff is happening in that hosted service. This package just formats the request for you, and parses and cleans up the response to make it easier to consume in a node.js / Javascript application. 
+This package is a thin library around the [IBM Watson Relationship Extraction](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/relationship-extraction.html) service on [IBM Bluemix](http://bluemix.net/). All the natural language processing stuff is happening in that hosted service. This package just formats the request for you, and parses and cleans up the response to make it easier to consume in a node.js / Javascript application. 
 
 There is nothing here that you couldn't get by driving those APIs yourself, but hopefully using this thin wrapper will be quicker and easier. 
 
