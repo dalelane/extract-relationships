@@ -1,0 +1,30 @@
+{
+  "name": "extract-relationships",
+  "version": "0.0.1",
+  "description": "A client library for the Watson Relationship Extraction service on IBM Bluemix.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dalelane/extract-relationships.git"
+  },
+  "keywords": [
+    "bluemix",
+    "watson",
+    "entity",
+    "entity",
+    "extraction",
+    "relationship",
+    "extraction",
+    "nlp",
+    "node"
+  ],
+  "author": "Dale Lane",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dalelane/extract-relationships/issues"
+  },
+  "homepage": "https://github.com/dalelane/extract-relationships"
+}
