@@ -370,7 +370,10 @@ If you are running your code on the Bluemix platform:
 
 ### Running outside Bluemix
 
-If you are running your code anywhere else, outside of Bluemix, you'll first need to provision yourself a Relationship Extraction service:
+If you are running your code anywhere else, outside of Bluemix, you'll first need to provision yourself a Relationship Extraction service. 
+
+There is a [more detailed walkthrough on the blog post](http://dalelane.co.uk/blog/?p=3272) about this, but in short:
+
  1. Go to [bluemix.net](http://bluemix.net)
  2. Sign in with your IBM ID (creating one if you've not already got one)
  3. Go to the Bluemix Dashboard
