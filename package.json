@@ -26,5 +26,11 @@
   "bugs": {
     "url": "https://github.com/dalelane/extract-relationships/issues"
   },
-  "homepage": "https://github.com/dalelane/extract-relationships"
+  "homepage": "https://github.com/dalelane/extract-relationships",
+  "dependencies": {
+    "clone": "^0.2.0",
+    "http-status": "^0.1.8",
+    "request": "^2.51.0",
+    "xml2object": "^0.1.2"
+  }
 }
