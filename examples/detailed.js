@@ -1,5 +1,5 @@
 var util = require('util');
-var extractrel = require('extract-relationships');
+var watson = require('extract-relationships');
 
 var text = 'John Smith works for IBM. ' + 
            'He started in 2004. ' + 
@@ -19,7 +19,7 @@ var options = {
     }
 };
 
-extractrel.extract(text, options, function(err, entities){
+watson.extract(text, options, function(err, entities){
     if (err){
         return console.error(err);
     }
