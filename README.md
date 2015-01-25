@@ -10,6 +10,19 @@ You provide text, and it'll extract:
  - the different mentions of each entity
  - the relationships between the entities contained in the text
 
+## Contents
+- [How this works](#how-this-works)
+- [Usage](#usage)
+    - [Basic](#basic)
+    - [Demo](#demo)
+- [Options](#options)
+- [Interpreting the output](#interpreting-the-output)
+- [Authentication](#authentication)
+    - [Bluemix](#bluemix)
+    - [Running outside Bluemix](#running-outside-bluemix)
+- [Usage and trademarks](#usage-and-trademarks)
+
+
 ## How this works
 
 This package is a thin library around the [IBM Watson Relationship Extraction](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/relationship-extraction.html) service on [IBM Bluemix](http://bluemix.net/). All the natural language processing stuff is happening in that hosted service. This package just formats the request for you, and parses and cleans up the response to make it easier to consume in a node.js / Javascript application. 
@@ -25,6 +38,7 @@ This means:
 
 ### Basic 
 Using default options 
+[examples/bluemix.js](https://github.com/dalelane/extract-relationships/tree/master/examples/bluemix.js)
 ```
 var watsonextractrel = require('extract-relationships');
 watsonextractrel.extract(yourtext, function (err, response) {
@@ -37,6 +51,7 @@ watsonextractrel.extract(yourtext, function (err, response) {
 ```
 
 Using custom options
+[examples/detailed.js](https://github.com/dalelane/extract-relationships/tree/master/examples/detailed.js)
 ```
 var watsonextractrel = require('extract-relationships');
 watsonextractrel.extract(yourtext, options, function (err, response) {
