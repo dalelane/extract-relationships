@@ -25,6 +25,7 @@ This means:
 
 ## Usage
 
+### Basic 
 Using default options 
 ```
 var watsonextractrel = require('extract-relationships');
@@ -49,6 +50,71 @@ watsonextractrel.extract(yourtext, options, function (err, response) {
 });
 ```
 
+### Demo
+Grab the contents of a news story, and use the Watson Relationship Extraction service to pick out the names of the people mentioned in that news story.
+
+Full working source at (https://github.com/dalelane/extract-relationships/tree/master/examples/newspeople.js)
+
+Snippet here:
+```
+async.waterfall([
+    // 
+    // download the contents of a BBC news story
+    function (callback) {
+        request(bbcNewsStoryUrl, callback); 
+    }, 
+
+    //
+    // get the text contents out of the story
+    function (response, body, callback) {
+        var contents = unfluff(body).text;
+
+        callback(null, contents);
+    }, 
+
+    //
+    // submit the story text to the Relationship Extraction service
+    function (text, callback) {
+        watson.extract(text, bluemixoptions, callback);
+    },
+
+    //
+    // get the names of people from the response
+    function (storyinfo, callback) {
+        // filter the responses to pick out the people entities
+        var people = storyinfo.entities.filter(function (entity) {            
+            return entity.type === 'PERSON' && 
+                   entity.level === 'NAM' && 
+                   // add a threshold so we ignore entities 
+                   //  with a very low confidence score
+                   entity.score >= 0.5;
+        });
+
+        // get the names out of those responses
+        var names = people.map(function (person) {
+
+            var personnames = [];
+
+            // Look through each mention of this person
+            //   as some of the mentions could refer to their occupation or job title
+            //   and some of the mentions will be 'he', 'she', 'they', etc.
+            // We're just interested in the names
+            person.mentions.forEach(function (mention) {
+                if (mention.role === 'PERSON' && mention.mtype === 'NAM') {
+                    personnames.push(mention.text);
+                }
+            });
+
+            return personnames;
+        });
+
+        callback(null, names);
+    }
+], function(err, result){
+    // print out the names we found
+    console.log(result);
+});
+```
 
 ## Options
 ```
@@ -285,7 +351,7 @@ If you are running your code on the Bluemix platform:
 
 ### Running outside Bluemix
 
-If you are running your code anywhere else, outside of Bluemix:
+If you are running your code anywhere else, outside of Bluemix, you'll first need to provision yourself a Relationship Extraction service:
  1. Go to [bluemix.net](http://bluemix.net)
  2. Sign in with your IBM ID (creating one if you've not already got one)
  3. Go to the Bluemix Dashboard
