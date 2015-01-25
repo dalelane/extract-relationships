@@ -35,11 +35,19 @@ var clone = require('clone');
  *   and can treat all responses in the same way.
  */
 function getAsArray(obj) {
-    if (util.isArray(obj)) {
-        return obj;
+    if (obj) {
+        if (util.isArray(obj)) {
+            // multiple objects in API response
+            return obj;
+        }
+        else {
+            // one object in API response
+            return [ obj ];
+        }
     }
     else {
-        return [ obj ];
+        // no objects in API response
+        return [];
     }
 }
 
