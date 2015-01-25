@@ -414,7 +414,7 @@ module.exports.extract = function extract(text) {
 
         if (name === 'entities') {
 
-            obj.entity.forEach(function (entity) {
+            getAsArray(obj.entity).forEach(function (entity) {
                 // objects are returned as arrays - we restructure
                 //  them into objects indexed by id to let us 
                 //  reference items in the array by id
@@ -446,7 +446,7 @@ module.exports.extract = function extract(text) {
         }
         else if (name === 'mentions') {
 
-            obj.mention.forEach(function (mention) {
+            getAsArray(obj.mention).forEach(function (mention) {
                 // objects are returned as arrays - we restructure
                 //  them into objects indexed by id to let us 
                 //  reference items in the array by id
