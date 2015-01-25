@@ -24,6 +24,8 @@ You **do** need an Internet connection - this package sends HTTP requests to an 
 You **do** need to sign up for an account with Bluemix first - the API it's using is authenticated, but this is quick and relatively painless
 
 ## Usage
+
+Using default options 
 ```
 var watsonextractrel = require('extract-relationships');
 watsonextractrel.extract(yourtext, function (err, response) {
@@ -34,6 +36,19 @@ watsonextractrel.extract(yourtext, function (err, response) {
     // output is contained in response
 });
 ```
+
+Using custom options
+```
+var watsonextractrel = require('extract-relationships');
+watsonextractrel.extract(yourtext, options, function (err, response) {
+    if (err) {
+        return console.error(err);
+    }
+
+    // output is contained in response
+});
+```
+
 
 ## Options
 ```
