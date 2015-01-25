@@ -1,6 +1,6 @@
 {
   "name": "extract-relationships",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A client library for the Watson Relationship Extraction service on IBM Bluemix.",
   "main": "index.js",
   "scripts": {
@@ -14,12 +14,12 @@
     "bluemix",
     "watson",
     "entity",
-    "entity",
     "extraction",
     "relationship",
     "extraction",
     "nlp",
-    "node"
+    "node",
+    "ibm"
   ],
   "author": "Dale Lane",
   "license": "MIT",

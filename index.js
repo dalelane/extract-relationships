@@ -497,7 +497,7 @@ module.exports.extract = function extract(text) {
         }
         else if (name === 'relations') {
 
-            relationships = obj.relation;
+            relationships = getAsArray(obj.relation);
 
         }
     });
