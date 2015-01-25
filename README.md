@@ -183,6 +183,8 @@ async.waterfall([
 
 The official documentation can be found in the [Watson Developer Cloud Documentation](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/sireapi) and is the definitive guide to the meaning of the values returned by the API. 
 
+An example of what the output looks like can be found [here](https://gist.github.com/dalelane/223500f2eae708fe34ef) and in the comments in each of the [examples](https://github.com/dalelane/extract-relationships/tree/master/examples). 
+
 The structure of the output returned by this client library is outlined here:
 
 ```
