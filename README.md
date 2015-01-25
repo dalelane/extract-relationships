@@ -13,6 +13,7 @@ You provide text, and it'll extract:
 ## Contents
 - [How this works](#how-this-works)
 - [Usage](#usage)
+    - [Install](#install)
     - [Basic](#basic)
     - [Demo](#demo)
 - [Options](#options)
@@ -38,7 +39,7 @@ This means:
 
 ### Install
 ```
-npm install extract-relationships
+npm install extract-relationships --save
 ```
 
 ### Basic 
