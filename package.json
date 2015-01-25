@@ -1,6 +1,6 @@
 {
   "name": "extract-relationships",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A client library for the Watson Relationship Extraction service on IBM Bluemix.",
   "main": "index.js",
   "scripts": {

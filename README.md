@@ -53,7 +53,7 @@ watsonextractrel.extract(yourtext, options, function (err, response) {
 ### Demo
 Grab the contents of a news story, and use the Watson Relationship Extraction service to pick out the names of the people mentioned in that news story.
 
-Full working source at (https://github.com/dalelane/extract-relationships/tree/master/examples/newspeople.js)
+Full working source in [examples/newspeople.js](https://github.com/dalelane/extract-relationships/tree/master/examples/newspeople.js)
 
 Snippet here:
 ```
@@ -370,6 +370,6 @@ Once created, you can get the url, username and password using:
 cf env <application-name>
 ```
 
-## Usage and copyright
+## Usage and trademarks
 
 Bluemix and Watson comes from, and are trademarks of, IBM. This client library is not provided or supported by IBM. It aims to make it easier to use a Bluemix API, but makes no claims over what you can or cannot do with it. It is your responsibility to conform to any terms and conditions for usage of the API that are part of signing up for an account on Bluemix.
