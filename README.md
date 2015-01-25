@@ -19,9 +19,9 @@ This package is a thin library around the IBM Watson Relationship Extraction ser
 There is nothing here that you couldn't get by driving those APIs yourself, but hopefully using this thin wrapper will be quicker and easier. 
 
 This means:
-You **don't** need to run your application on Bluemix - the APIs are accessible over the web
-You **do** need an Internet connection - this package sends HTTP requests to an API hosted on IBM's Bluemix platform. It is not doing the NLP locally. 
-You **do** need to sign up for an account with Bluemix first - the API it's using is authenticated, but this is quick and relatively painless
+- You **don't** need to run your application on Bluemix - the APIs are accessible over the web
+- You **do** need an Internet connection - this package sends HTTP requests to an API hosted on IBM's Bluemix platform. It is not doing the NLP locally. 
+- You **do** need to sign up for an account with Bluemix first - the API it's using is authenticated, but this is quick and relatively painless
 
 ## Usage
 
