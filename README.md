@@ -46,8 +46,8 @@ npm install extract-relationships --save
 Using default options 
 [examples/bluemix.js](https://github.com/dalelane/extract-relationships/tree/master/examples/bluemix.js)
 ```
-var watsonextractrel = require('extract-relationships');
-watsonextractrel.extract(yourtext, function (err, response) {
+var watson = require('extract-relationships');
+watson.extract(yourtext, function (err, response) {
     if (err) {
         return console.error(err);
     }
@@ -59,8 +59,8 @@ watsonextractrel.extract(yourtext, function (err, response) {
 Using custom options
 [examples/detailed.js](https://github.com/dalelane/extract-relationships/tree/master/examples/detailed.js)
 ```
-var watsonextractrel = require('extract-relationships');
-watsonextractrel.extract(yourtext, options, function (err, response) {
+var watson = require('extract-relationships');
+watson.extract(yourtext, options, function (err, response) {
     if (err) {
         return console.error(err);
     }
