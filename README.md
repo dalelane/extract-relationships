@@ -396,4 +396,4 @@ cf env <application-name>
 
 ## Usage and trademarks
 
-Bluemix and Watson comes from, and are trademarks of, IBM. This client library is not provided or supported by IBM. It aims to make it easier to use a Bluemix API, but makes no claims over what you can or cannot do with it. It is your responsibility to conform to any terms and conditions for usage of the API that are part of signing up for an account on Bluemix.
+Bluemix and Watson come from, and are trademarks of, IBM. This client library is not provided or supported by IBM. It aims to make it easier to use a Bluemix API, but makes no claims over what you can or cannot do with that API. It is your responsibility to conform to any terms and conditions for usage of the API that are part of signing up for an account on Bluemix.
