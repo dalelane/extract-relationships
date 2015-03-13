@@ -11,6 +11,7 @@ var options = {
     includeRelationships : true, 
     includeLocations     : true,
     includeScores        : true, 
+    includeIds           : false,
 
     api : { 
         url : process.env.BLUEMIX_WATSON_RELEXT_URL,

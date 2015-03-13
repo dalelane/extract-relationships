@@ -159,6 +159,11 @@ async.waterfall([
     // Defaults to true if not provided
     includeScores : true,
 
+    // if true, unique IDs will be included with objects returned
+    //  in the response
+    includeIds : false,
+
+
 
     // Language & corpus profile to use to process text
     //   'ie-en-news' is based on English news sources

@@ -52,6 +52,19 @@ function getAsArray(obj) {
 }
 
 /**
+ * cleanId()
+ *
+ *   IDs are returned from the Bluemix service prefixed with '-'
+ *    so we remove that to make it a little cleaner.
+ */
+function cleanId(bluemixid) {
+    if (bluemixid && bluemixid.substr(0, 1) === '-'){
+        return bluemixid.substr(1);
+    }
+    return bluemixid;
+}
+
+/**
  * collectEntityMentions()
  * 
  *   Takes a collection of entity objects, and a collection of mentions of 
@@ -299,7 +312,11 @@ var DEFAULT_OPTIONS = {
 
     // if true, confidence scores in each item returned by the
     //  API should be included in the response
-    includeScores : true
+    includeScores : true,
+
+    // if true, unique IDs will be included with objects returned
+    //  in the response
+    includeIds : false
 };
 
 
@@ -330,6 +347,8 @@ var DEFAULT_OPTIONS = {
  *                                               the response. 
  *                                              Scores are returned as doubles between 0 and 1.
  *                                              Defaults to true
+ *                    {Boolean} includeIds - If true, unique IDs for entity and mention objects
+ *                                             are included in the response. 
  *                    {String} dataset - the dataset to use for entity extraction
  *                                        Defaults to ie-en-news
  *                    {Object} api - Containing url, user and pass strings
@@ -428,6 +447,10 @@ module.exports.extract = function extract(text) {
                 //  reference items in the array by id
                 entities[entity.eid] = entity;
 
+                if (options.includeIds){
+                    entity.id = cleanId(entity.eid);
+                }
+
                 // entities are indexed by entity id (eid)
                 //  so this isn't needed within the object
                 delete entity.eid;
@@ -459,6 +482,10 @@ module.exports.extract = function extract(text) {
                 //  them into objects indexed by id to let us 
                 //  reference items in the array by id
                 mentions[mention.mid] = mention;
+
+                if (options.includeIds){
+                    mention.id = cleanId(mention.mid);
+                }
 
                 // mentions are indexed by id, so these
                 //  aren't needed within the object
